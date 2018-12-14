@@ -1,5 +1,6 @@
 kayac-vue-starter
 ====
+**Vue CLIベースの開発環境になります。**
 
 ## 事前に用意するもの
 - node.js (version 10.14.2以上)
@@ -25,10 +26,19 @@ yarn
 - `vue.config.js`
   - Vue CLIの設定をカスタマイズするファイルです。
   - loaderの追加, build先の指定などもここでやります。
+- `.eslintrc.js`
+  - ESLintの設定ファイル
+  - `;`の有無等のルールの修正をしたい場合はこのファイルを修正してください。
+- `.postcssrc.js`  
+  - postcssの設定ファイル
+  - デフォルトでautoprefixerが入っています。
+- `.babel.config.js`  
+  - babelの設定ファイル。
+  - dynamic importなどのpluginを使う場合はこのファイルを修正してください。	
 - `public`
   - テンプレートとなるHTMLファイルやfavicon、OGP画像などの静的ファイルを置きます。  
 - `dist`
-  - Web公開されるファイルの置き場所です。 
+  - Web公開されるファイルの置き場所です。   
 - `src/assets`
   - コンポーネント内で使用する画像、共通で使うscssファイル、meta情報などのjsonファイルはここに格納されています。
 - `src/components`  
