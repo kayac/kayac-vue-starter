@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>kayac-vue-starter</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but kayac-vue-starter doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="keywords" content="<%= META.KEYWORDS %>">
+  <meta name="description" content="<%= META.DESCRIPTION %>">
+  <meta name="format-detection" content="telephone=no">
+  <meta property="og:url" content="<%= BASE_URL %>">
+  <meta property="og:title" content="<%= META.TITLE %>">
+  <meta property="og:description" content="<%= META.DESCRIPTION %>">
+  <meta property="og:image" content="<%= BASE_URL + META.SHARE_IMAGE_PATH %>">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="<%= META.TITLE %>">
+  <meta property="twitter:description" content="<%= META.DESCRIPTION %>">
+  <meta property="twitter:image" content="<%= BASE_URL + META.SHARE_IMAGE_PATH %>">
+  <link rel="canonical" href="<%= BASE_URL %>">
+  <link rel="icon" href="<%= BASE_PATH %>favicon.ico">
+  <title><%= META.TITLE %></title>
+</head>
+<body>
+<noscript>
+  <strong>We're sorry but kayac-vur-starter doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
 </html>
