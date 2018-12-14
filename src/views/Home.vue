@@ -1,6 +1,7 @@
 <template lang="pug">
   .home
     img(src="../assets/logo.png" alt="Vue logo" @click="addCount")
+    p {{ count }}
     HelloWorld(msg="Welcome to Your Vue.js App")
 </template>
 
