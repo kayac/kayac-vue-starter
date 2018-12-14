@@ -54,7 +54,6 @@ yarn
   - 遷移が増えた時に追加します。
 ## 開発手順
 
-開発時に必要なタスクは、npm scriptおよびwebpack.config.jsで管理されています。
 shellから以下のコマンドを実行することで、各種ビルド・タスク実行が可能です。
 
 - `npm run start` / `yarn start`
