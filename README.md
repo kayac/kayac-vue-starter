@@ -51,13 +51,13 @@ npm install
 
 shellから以下のコマンドを実行することで、各種ビルド・タスク実行が可能です。
 
-- `npm run start` / `yarn start`
+- `npm run start` / `npm start`
   - 開発用ブラウザを立ち上げ、その後ソースコードに修正があれば自動ビルド・自動ブラウザ更新します
   - 基本的には、このコマンドを実行しておくだけで開発が可能なはずです。
-- `npm run build` / `yarn build`
-  - ファイルをビルドします。`webpack-dev-server`では、ビルドファイルはサーバー側で保持します。
+- `npm run build` 
+  - ファイルをビルドします。vue-cli内部で動いている`webpack-dev-server`では、ビルドファイルはサーバー側で保持します。
     そのため、ファイルとして出力するには `npm run build` / `yarn build` が必要になります。
-- `npm run lint` / `yarn lint`
+- `npm run lint` 
   - Lintが走ります。  
 
 ## 使用言語
