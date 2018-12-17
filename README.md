@@ -12,11 +12,6 @@ kayac-vue-starter
 npm install
 ```
 
-あるいは、
-```
-yarn
-```
-
 ## ファイル構成
 
 - `README.md`
