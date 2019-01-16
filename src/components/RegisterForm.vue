@@ -1,16 +1,17 @@
 <template lang="pug">
 form.form-items(@submit.prevent="submission")
   .form-item
+    p.form-warning(v-if="isEmpty") 名前が入力されていません
     label(for="name") 名前
-    input(name="name" v-model.trim="formData.name.content")
+    input(name="name" v-model.trim="formData.name")
 
   .form-item
     label(for="mail") メールアドレス
-    input(name="mail" v-model.trim="formData.mail.content" type="email")
+    input(name="mail" v-model.trim="formData.mail" type="email")
 
   .form-item
     label(for="password") パスワード
-    input(name="password" v-model.trim="formData.password.content" type="password")
+    input(name="password" v-model.trim="formData.password" type="password")
 
   .form-item
   button(type="submit") 送信
@@ -35,7 +36,23 @@ export default {
   },
   methods: {
     submission: function() {
-      console.log("送られるJSON : " + this.formData);
+      if ( this.isEmpty() ){
+        console.log("success");
+        console.log("送られるJSON : " + this.formData);
+      }
+      else {
+        console.log("error");
+      }
+    },
+    isEmpty: function() {
+      let result = true;
+      Object.keys(this.formData).forEach(function(formDataItem) {
+        if( formDataItem.length === 0) {
+          exit;
+          result = false;
+        }
+      });
+      return result;
     }
   }
 };
