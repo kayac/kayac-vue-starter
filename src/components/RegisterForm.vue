@@ -1,18 +1,19 @@
 <template lang="pug">
 form.form-items
-  div.form-item
+  .form-item
     label(for="name") 名前
     input(name="name" v-model="name")
 
-  div.form-item
+  .form-item
     label(for="mail") メールアドレス
     input(name="mail" v-model="mail" type="email")
 
-  div.form-item
+  .form-item
     label(for="password") パスワード
     input(name="password" v-model.trim="password" type="password")
 
-  button(@click="Submission()" @submit.prevent="onSubmit") 送信
+  .form-item
+  button 送信
 </template>
 
 <script>
