@@ -11,15 +11,6 @@ export default {
   name: "register",
   components: {
     RegisterForm
-  },
-  computed: {
-    ...mapState(["count"])
-  },
-  methods: {
-    ...mapActions(["increment"]),
-    addCount() {
-      this.increment();
-    }
   }
 };
 </script>
