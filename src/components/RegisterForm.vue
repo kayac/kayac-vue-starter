@@ -1,7 +1,6 @@
 <template lang="pug">
 form.form-items(@submit.prevent="submission")
   .form-item
-    p.form-warning(v-if="isEmpty") 名前が入力されていません
     label(for="name") 名前
     input(name="name" v-model.trim="formData.name")
 
@@ -26,11 +25,6 @@ export default {
         name: "dely",
         mail: "email@email.jp",
         password: "password"
-      },
-      validation: {
-        name: true,
-        mail: true,
-        password: true
       }
     };
   },
@@ -46,12 +40,12 @@ export default {
     },
     isEmpty: function() {
       let result = true;
-      Object.keys(this.formData).forEach(function(formDataItem) {
-        if( formDataItem.length === 0) {
-          exit;
+      Object.keys(this.formData).forEach((formDataItem) => {
+        if( this.formData[formDataItem].length === 0) {
           result = false;
         }
       });
+      console.log(result);
       return result;
     }
   }
