@@ -44,7 +44,7 @@ export default {
   methods: {
     // 送信ボタンが押された時の処理
     submission: function() {
-      // this.warningTextInitialize.clear(this.warningText);
+      this.warningTextInitialize.clear(this.warningText);
       // 空白チェック
       if (this.isEmpty() && this.nameLengthCheck() && this.mailTypeCheck()){
         console.log("result: success");
@@ -73,11 +73,13 @@ export default {
       return true;
     },
     mailTypeCheck: function() {
-      let type = new RegExp(/*\@*\.*/);
-        console.log(this.formData.mail);
-      console.log("mailTypeCheck:" + this.formData.mail.exec(/*\@*\.*/));
-      if (!type.exec(this.formData.mail)) {
-        this.warningText.name = "正しいメールの形式を入力してください";
+      let type = new RegExp(/[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-]/);
+      // console.log(this.formData.mail);
+      // console.log(type);
+      // console.log("mailTypeCheck: " + type.test(this.formData.mail));
+      if (!type.test(this.formData.mail)) {
+        this.warningText.mail = "正しいメールの形式を入力してください";
+        return false;
       }
       return true;
     },
