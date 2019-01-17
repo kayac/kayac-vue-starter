@@ -2,12 +2,12 @@
 form.form-items(@submit.prevent="submission")
   .form-item
     label(for="name") {{ formItemName.name }}
-    input(name="name" v-model.trim="formData.name")
+    input(name="name" v-model.trim="formData.name" type="text")
     p.form-warning(v-if="warningText.name") {{ warningText.name }}
 
   .form-item
     label(for="mail")  {{ formItemName.mail }}
-    input(name="mail" v-model.trim="formData.mail" type="email")
+    input(name="mail" v-model.trim="formData.mail" type="text")
     p.form-warning(v-if="warningText.mail") {{ warningText.mail }}
 
   .form-item
@@ -42,14 +42,21 @@ export default {
     };
   },
   methods: {
+    // 送信ボタンが押された時の処理
     submission: function() {
-      if ( this.isEmpty() ){
+      this.warninTextInitialize.clear();
+      // 空白チェック
+      if ( this.isEmpty() &&  this.lengthCheck() ){
         console.log("success");
         console.log("送られるJSON : " + this.formData);
       }
       else {
         console.log("error");
       }
+
+      // 名前の文字数チェック
+      // this.lengthCheck();
+      
     },
     isEmpty: function() {
       let result = true;
@@ -57,12 +64,24 @@ export default {
         if( this.formData[formDataItem].length === 0) {
           result = false;
           this.warningText[formDataItem] = this.formItemName[formDataItem] + "を入力してください"
-        } else {
-          this.warningText[formDataItem] = null;
         }
       });
-      console.log(result);
       return result;
+    },
+    lengthCheck: function() {
+      if ( !this.formData.name.length <= 5) {
+        this.warningText.name = "名前は５文字以上入力してください"
+        return false;
+      }
+      return true;
+    },
+    warningTextInitialize: function() {
+      let defaultText = this.warningText;
+      return {
+        clear: function() {
+          this.warningText = defaultText;
+        }
+      }
     }
   }
 };
