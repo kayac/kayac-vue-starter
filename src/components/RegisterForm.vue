@@ -1,5 +1,5 @@
 <template lang="pug">
-form.form-items
+.form-items
   .form-item
     label(for="name") {{ formItemName.name }}
     input(name="name" v-model.trim="formData.name" type="text")
@@ -30,7 +30,7 @@ export default {
         password: "パスワード"
       },
       formData: {
-        name: "dely",
+        name: "名前５文字",
         mail: "email@email.jp",
         password: "password"
       },
@@ -44,44 +44,50 @@ export default {
   methods: {
     // 送信ボタンが押された時の処理
     submission: function() {
-      this.warninTextInitialize.clear();
+      // this.warningTextInitialize.clear(this.warningText);
       // 空白チェック
-      if ( this.isEmpty() &&  this.lengthCheck() ){
-        console.log("success");
-        console.log("送られるJSON : " + this.formData);
+      if (this.isEmpty() && this.nameLengthCheck() && this.mailTypeCheck()){
+        console.log("result: success");
+      } else {
+        console.log("result: error");
       }
-      else {
-        console.log("error");
-      }
-
-      // 名前の文字数チェック
-      // this.lengthCheck();
       
     },
     isEmpty: function() {
       let result = true;
       Object.keys(this.formData).forEach((formDataItem) => {
-        if( this.formData[formDataItem].length === 0) {
+        if(this.formData[formDataItem].length === 0) {
           result = false;
-          this.warningText[formDataItem] = this.formItemName[formDataItem] + "を入力してください"
+          this.warningText[formDataItem] = this.formItemName[formDataItem] + "を入力してください";
         }
       });
       return result;
     },
-    lengthCheck: function() {
-      if ( !this.formData.name.length <= 5) {
-        this.warningText.name = "名前は５文字以上入力してください"
+    nameLengthCheck: function() {
+      // console.log("lengthCheck:" + (this.formData.name.length <= 4));
+      // console.log("length:" + this.formData.name.length);
+      if (this.formData.name.length <= 4) {
+        this.warningText.name = "名前は５文字以上入力してください";
         return false;
+      }
+      return true;
+    },
+    mailTypeCheck: function() {
+      let type = new RegExp(/*\@*\.*/);
+        console.log(this.formData.mail);
+      console.log("mailTypeCheck:" + this.formData.mail.exec(/*\@*\.*/));
+      if (!type.exec(this.formData.mail)) {
+        this.warningText.name = "正しいメールの形式を入力してください";
       }
       return true;
     },
     warningTextInitialize: function() {
       let defaultText = this.warningText;
       return {
-        clear: function() {
-          this.warningText = defaultText;
+        clear: (warningTextState) => {
+          warningTextState = defaultText;
         }
-      }
+      };
     }
   }
 };
