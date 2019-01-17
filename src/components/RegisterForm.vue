@@ -44,7 +44,7 @@ export default {
   methods: {
     // 送信ボタンが押された時の処理
     submission: function() {
-      this.warningTextInitialize.clear(this.warningText);
+      this.warningTextInitialize();
       // 空白チェック
       if (this.isEmpty() && this.nameLengthCheck() && this.mailTypeCheck()){
         console.log("result: success");
@@ -84,11 +84,11 @@ export default {
       return true;
     },
     warningTextInitialize: function() {
-      let defaultText = this.warningText;
-      return {
-        clear: (warningTextState) => {
-          warningTextState = defaultText;
-        }
+      // 中身を初期化
+      this.warningText = {
+        name: null,
+        mail: null,
+        password: null
       };
     }
   }
