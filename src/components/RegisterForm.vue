@@ -1,5 +1,5 @@
 <template lang="pug">
-form.form-items(@submit.prevent="submission")
+form.form-items
   .form-item
     label(for="name") {{ formItemName.name }}
     input(name="name" v-model.trim="formData.name" type="text")
@@ -7,7 +7,7 @@ form.form-items(@submit.prevent="submission")
 
   .form-item
     label(for="mail")  {{ formItemName.mail }}
-    input(name="mail" v-model.trim="formData.mail" type="text")
+    input(name="mail" v-model.trim="formData.mail" type="email")
     p.form-warning(v-if="warningText.mail") {{ warningText.mail }}
 
   .form-item
@@ -16,7 +16,7 @@ form.form-items(@submit.prevent="submission")
     p.form-warning(v-if="warningText.password") {{ warningText.password }}
 
   .form-item
-  button(type="submit") 送信
+  button(@click="submission") 送信
 </template>
 
 <script>
