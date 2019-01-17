@@ -57,6 +57,8 @@ export default {
         if( this.formData[formDataItem].length === 0) {
           result = false;
           this.warningText[formDataItem] = this.formItemName[formDataItem] + "を入力してください"
+        } else {
+          this.warningText[formDataItem] = null;
         }
       });
       console.log(result);
