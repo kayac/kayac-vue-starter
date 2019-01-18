@@ -62,17 +62,17 @@ export default {
       return result;
     },
     checkNameLength: function() {
-      console.log("lengthCheck: " + !(this.formData.name.length <= 4));
-      console.log("length: " + this.formData.name.length);
+      // console.log("lengthCheck: " + !(this.formData.name.length <= 4));
+      // console.log("length: " + this.formData.name.length);
       this.warningState.isNameLengthCheck =
         this.formData.name.length <= 4 ? true : false;
       return !this.warningState.isNameLengthCheck;
     },
     checkMailType: function() {
       let type = new RegExp(/[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-]/);
-      console.log(this.formData.mail);
-      console.log(type);
-      console.log("mailTypeCheck: " + type.test(this.formData.mail));
+      // console.log(this.formData.mail);
+      // console.log(type);
+      // console.log("mailTypeCheck: " + type.test(this.formData.mail));
       this.warningState.isMailTypeCheck = !type.test(this.formData.mail)
         ? true
         : false;
