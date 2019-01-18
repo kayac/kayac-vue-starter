@@ -57,7 +57,9 @@ export default {
       Object.keys(this.formData).forEach(formDataItem => {
         this.warningState.isEmptyCheck[formDataItem] =
           this.formData[formDataItem].length === 0 ? true : false;
-        result = !this.warningState.isEmptyCheck[formDataItem];
+        if (this.warningState.isEmptyCheck[formDataItem] === true) {
+          result = !this.warningState.isEmptyCheck[formDataItem];
+        }
       });
       return result;
     },
@@ -73,10 +75,8 @@ export default {
       // console.log(this.formData.mail);
       // console.log(type);
       // console.log("mailTypeCheck: " + type.test(this.formData.mail));
-      this.warningState.isMailTypeCheck = !type.test(this.formData.mail)
-        ? true
-        : false;
-      return !this.warningState.mailTypeCheck;
+      this.warningState.isMailTypeCheck = !type.test(this.formData.mail);
+      return type.test(this.formData.mail);
     }
   }
 };
