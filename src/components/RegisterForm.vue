@@ -10,7 +10,7 @@
     label(for="mail") メール
     input(name="mail" v-model.trim="formData.mail" type="email")
     p.form-warning(v-if="warningState.isEmptyCheck.mail") メールを入力してください
-    p.form-warning(v-if="warningState.isMailTypeCheck") 正しいメールの形式にしてください
+    p.form-warning(v-else-if="warningState.isMailTypeCheck") 正しいメールの形式にしてください
 
   .form-item
     label(for="password") パスワード
@@ -45,17 +45,15 @@ export default {
   methods: {
     // 送信ボタンが押された時の処理
     submission: function() {
-      try {
-        this.isEmpty();
-        this.nameLengthCheck();
-        this.mailTypeCheck();
+      let isValidation = true;
+      if (this.checkEmpty() && this.checkNameLength() && this.checkMailType()) {
+        // process in succeeded
+      } else{
+          isValidation = false;
       }
-      catch(e){
-        console.log("result: "+ e);
-      }
-      console.log("result: success");
+      console.log("result: " +  (isValidation ? "success" : "failure"));
     },
-    isEmpty: function() {
+    checkEmpty: function() {
       let result = true;
       Object.keys(this.formData).forEach((formDataItem) => {
         this.warningState.isEmptyCheck[formDataItem] = this.formData[formDataItem].length === 0 ? true : false;
@@ -63,17 +61,17 @@ export default {
       });
       return result;
     },
-    nameLengthCheck: function() {
-      // console.log("lengthCheck: " + !(this.formData.name.length <= 4));
-      // console.log("length: " + this.formData.name.length);
+    checkNameLength: function() {
+      console.log("lengthCheck: " + !(this.formData.name.length <= 4));
+      console.log("length: " + this.formData.name.length);
       this.warningState.isNameLengthCheck = (this.formData.name.length <= 4) ? true : false;
       return !this.warningState.isNameLengthCheck;
     },
-    mailTypeCheck: function() {
+    checkMailType: function() {
       let type = new RegExp(/[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-]/);
-      // console.log(this.formData.mail);
-      // console.log(type);
-      // console.log("mailTypeCheck: " + type.test(this.formData.mail));
+      console.log(this.formData.mail);
+      console.log(type);
+      console.log("mailTypeCheck: " + type.test(this.formData.mail));
       this.warningState.isMailTypeCheck = !(type.test(this.formData.mail)) ? true : false;
       return !this.warningState.mailTypeCheck;
     }
