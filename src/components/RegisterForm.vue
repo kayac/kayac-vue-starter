@@ -28,9 +28,9 @@ export default {
     return {
       isValidation: true,
       formData: {
-        name: "aaaaa",
-        mail: "aa@aa.a",
-        password: "a"
+        name: "",
+        mail: "",
+        password: ""
       },
       warningState: {
         isEmptyCheck: {
