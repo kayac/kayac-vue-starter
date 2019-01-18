@@ -26,16 +26,17 @@ export default {
   name: "RegisterForm",
   data: () => {
     return {
+      isValidation: true,
       formData: {
-        name: "asdfg",
-        mail: "email@email.jp",
-        password: "password"
+        name: "aaaaa",
+        mail: "aa@aa.a",
+        password: "a"
       },
       warningState: {
         isEmptyCheck: {
           name: false,
           mail: false,
-          password: false,
+          password: false
         },
         isNameLengthCheck: false,
         isMailTypeCheck: false
@@ -45,18 +46,18 @@ export default {
   methods: {
     // 送信ボタンが押された時の処理
     submission: function() {
-      let isValidation = true;
       if (this.checkEmpty() && this.checkNameLength() && this.checkMailType()) {
         // process in succeeded
-      } else{
-          isValidation = false;
+      } else {
+        this.isValidation = false;
       }
-      console.log("result: " +  (isValidation ? "success" : "failure"));
+      console.log("result: " + (this.isValidation ? "success" : "failure"));
     },
     checkEmpty: function() {
       let result = true;
-      Object.keys(this.formData).forEach((formDataItem) => {
-        this.warningState.isEmptyCheck[formDataItem] = this.formData[formDataItem].length === 0 ? true : false;
+      Object.keys(this.formData).forEach(formDataItem => {
+        this.warningState.isEmptyCheck[formDataItem] =
+          this.formData[formDataItem].length === 0 ? true : false;
         result = !this.warningState.isEmptyCheck[formDataItem];
       });
       return result;
@@ -64,7 +65,8 @@ export default {
     checkNameLength: function() {
       console.log("lengthCheck: " + !(this.formData.name.length <= 4));
       console.log("length: " + this.formData.name.length);
-      this.warningState.isNameLengthCheck = (this.formData.name.length <= 4) ? true : false;
+      this.warningState.isNameLengthCheck =
+        this.formData.name.length <= 4 ? true : false;
       return !this.warningState.isNameLengthCheck;
     },
     checkMailType: function() {
@@ -72,7 +74,9 @@ export default {
       console.log(this.formData.mail);
       console.log(type);
       console.log("mailTypeCheck: " + type.test(this.formData.mail));
-      this.warningState.isMailTypeCheck = !(type.test(this.formData.mail)) ? true : false;
+      this.warningState.isMailTypeCheck = !type.test(this.formData.mail)
+        ? true
+        : false;
       return !this.warningState.mailTypeCheck;
     }
   }
