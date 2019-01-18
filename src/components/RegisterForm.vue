@@ -26,7 +26,7 @@ export default {
   name: "RegisterForm",
   data: () => {
     return {
-      isValidation: true,
+      isValidation: false,
       formData: {
         name: "",
         mail: "",
@@ -47,9 +47,8 @@ export default {
     // 送信ボタンが押された時の処理
     submission: function() {
       if (this.checkEmpty() && this.checkNameLength() && this.checkMailType()) {
+        this.isValidation = true;
         // process in succeeded
-      } else {
-        this.isValidation = false;
       }
       console.log("result: " + (this.isValidation ? "success" : "failure"));
     },
